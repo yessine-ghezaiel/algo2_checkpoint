@@ -1,0 +1,56 @@
+ALGORITHM algo2_checkpoint_version_1
+VAR
+    i,j : INTEGER
+    s_commun:INTEGER:=0
+    s_dist:INTEGER:=0
+
+    set1,set2,set : ARRAY_OF INTEGER[];
+    exist:BOOLEAN
+BEGIN
+    set:=concat(set1,set2)
+    FOR i FROM 0 TO set.length-1 STEP 1 DO
+        exist:=false
+       FOR j FROM 0 TO set.length-1 STEP 1 DO
+           IF (set[i]=set[j] AND i<>j) THEN
+               s_commun:=s_commun+set[i]
+               found:=true
+           END_IF
+       END_FOR
+           IF (exist == false ) THEN
+               s_dist=s_dist+set[i]
+           END_IF
+    END_FOR
+Write(s_commun)
+Write(s_dist)
+END
+
+
+LGORITHM algo2_checkpoint_version_2
+VAR
+    set1,set2,set,index : ARRAY_OF INTEGER[];
+    h_table:HASH_TABLE<INTEGER,INTEGER>;
+    sum: INTEGER :=0
+
+BEGIN
+    set=concat(set1,set2)
+    FOR i FROM 0 TO set.length-1 DO
+        sum:=1
+        IF (htab.lookup(set[i])=true) THEN
+            sum:= htab.get(set[i])+1
+
+        ELSE
+           index.push(set[i])
+      
+        END_IF
+             htab.insert(set[i],sum)
+    END_FOR
+    FOR i FROM 0 TO index.length-1  DO
+        IF (htab.get(index[i]<>1)) THEN
+        s_commun:= sum+ index[i]*htab.get(index[i])
+          ELSE
+          s_dist:=sum+index[i]
+        END_IF
+    END_FOR
+Write(s_commun)
+Write(s_dist)
+END
